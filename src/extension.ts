@@ -86,7 +86,8 @@ class Tuareg {
         let cursorOffs = doc.offsetAt(editor.selection.active);
         let currOffs = 0;
         let currInd = -1;
-        let tokens = doc.getText().split(";;");
+        let decommented = doc.getText().replace(/\(\*.*\*\)/gs, '');
+        let tokens = decommented.split(";;");
         for (var index = 0; index <= tokens.length; ++index) {
             if (previousStatement) {
                 if (currOffs <= cursorOffs && cursorOffs <= currOffs + tokens[index].length + 1) {
